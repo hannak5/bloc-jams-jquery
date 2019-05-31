@@ -7,10 +7,16 @@ class Player {
   }
 
   prettyTime(timeInSeconds) {
-    const minutes = timeInSecond % 60;
-    const seconds = timeInSeconds - (minutes*60);
-    return text(minutes + ":" + seconds);
-  }
+    if (timeInSeconds <= 60) {
+      const newTime = 0 + ":" + Math.trunc(timeInSeconds);
+    $('#time-control .current-time').text( newTime );}
+    else {
+      const minutes = Math.trunc (timeInSeconds / 60);
+      const seconds = Math.floor(timeInSeconds - (minutes*60));
+      const newTime = minutes + ":" + seconds;
+      $('#time-control .current-time').text( newTime );
+      }
+    }
 
   getDuration() {
     return this.soundObject.getDuration();
